@@ -9,8 +9,7 @@ public class MachineCompositeTest {
     }
 
     @Test
-    public void testSomeMethod() {
-        
+    public void testUpdate1() {
     }
 
 }

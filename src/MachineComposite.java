@@ -7,8 +7,8 @@ import java.util.Observer;
 public class MachineComposite extends Observable implements Observer {
 
     private List<MachineComponent> components = new ArrayList<>();
-    private int brokenComponents = 0;
-    private boolean broken = false;
+    public int brokenComponents = 0;
+    public boolean broken = false;
 
     public void addComponent(MachineComponent mc) {
         components.add(mc);
