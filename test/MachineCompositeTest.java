@@ -124,22 +124,23 @@ public class MachineCompositeTest {
     }
 
     @Test
-    public void NotNotify_MultiComponentDoubleBroken() {
+    public void NotNotify_ComponentAlreadyBroken() {
         MachineComposite mc = new MachineComposite();
         ObserverSample os = new ObserverSample();
         Machine m1 = new Machine();
-        Machine m2 = new Machine();
-
+        
+        mc.setBroken();
         m1.setBroken();
 
         mc.addObserver(os);
         mc.addComponent(m1);
-        mc.addComponent(m2);
 
-        assertEquals(true, mc.isBroken());
         m1.setBroken();
-
+        mc.update(m1, m1);
+        
+        assertEquals(true, m1.isBroken());
         assertEquals(true, mc.isBroken());
         assertEquals(false, os.alerted);
     }
+
 }
