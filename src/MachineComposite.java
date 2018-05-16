@@ -7,8 +7,8 @@ import java.util.Observer;
 public class MachineComposite extends Observable implements Observer {
 
     private List<MachineComponent> components = new ArrayList<>();
-    public int brokenComponents = 0;
-    public boolean broken = false;
+    private int brokenComponents = 0;
+    private boolean broken = false;
 
     public void addComponent(MachineComponent mc) {
         components.add(mc);
@@ -36,7 +36,7 @@ public class MachineComposite extends Observable implements Observer {
     public void repair() {
         boolean wasBroken = isBroken();
         broken = false;
-        if (!wasBroken) {
+        if (wasBroken) {
             notifyChanges();
         }
     }
@@ -45,14 +45,14 @@ public class MachineComposite extends Observable implements Observer {
     public void update(Observable obs, Object arg) {
         MachineComponent mc = (MachineComponent) obs;
         if (mc.isBroken()) {
-            brokenSubcomponent(mc);
+            brokenSubcomponent();
         } else {
             repairedSubcomponent(mc);
         }
     }
 
-    private void brokenSubcomponent(MachineComponent mc) {
-        boolean wasBroken = mc.isBroken();
+    private void brokenSubcomponent() {
+        boolean wasBroken = isBroken();
         brokenComponents += 1;
         if (!wasBroken) {
             notifyChanges();

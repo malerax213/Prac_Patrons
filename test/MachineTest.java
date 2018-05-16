@@ -10,20 +10,15 @@ public class MachineTest {
 
     @Test
     public void testUpdate1() { // Tests if the methods isBroken() and update() work properly
-        MachineComposite mc = new MachineComposite();
         Machine m = new Machine();
         m.setBroken();
-        
-        mc.addComponent(m);
-        assertEquals(true, mc.isBroken());
+        assertEquals(true, m.isBroken());
         m.repair();
-        mc.update(m, 0);
-        assertEquals(false, mc.isBroken());
+        assertEquals(false, m.isBroken());
     }
 
     @Test
     public void testUpdate2() {       
-        MachineComposite mc = new MachineComposite();
         Machine m1 = new Machine();
         m1.setBroken();
         
@@ -32,21 +27,13 @@ public class MachineTest {
         
         Machine m3 = new Machine();
         m3.repair();
-        
-        mc.addComponent(m1);
-        mc.addComponent(m2);
-        mc.addComponent(m3);
-        // There are 2 broken components
-        assertEquals(true, mc.isBroken());
-        // The first machine is being repaired
+
+        assertEquals(true, m1.isBroken());
         m1.repair();
-        // There is still a broken component
-        assertEquals(true, mc.isBroken());
-        // The second machine is being repaired
+        assertEquals(false, m1.isBroken());
         m2.repair();
-        mc.update(m2, 0);
-        // Now there shouldn't be any broken component
-        assertEquals(false, mc.isBroken());
+        assertEquals(false, m2.isBroken());
+        assertEquals(false, m3.isBroken());
     }
 
 }
