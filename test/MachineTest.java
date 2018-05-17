@@ -9,7 +9,7 @@ public class MachineTest {
     }
 
     @Test
-    public void testUpdate1() { // Tests if the methods isBroken() and update() work properly
+    public void testMachine1() {
         Machine m = new Machine();
         m.setBroken();
         assertEquals(true, m.isBroken());
@@ -18,7 +18,7 @@ public class MachineTest {
     }
 
     @Test
-    public void testUpdate2() {       
+    public void testMachine2() {       
         Machine m1 = new Machine();
         m1.setBroken();
         
