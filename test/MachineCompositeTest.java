@@ -56,8 +56,6 @@ public class MachineCompositeTest {
         mc.addComponent(m);
         m.setBroken();
 
-        mc.update(m, m);
-
         assertEquals(true, mc.isBroken());
         assertEquals(true, os.alerted);
     }
@@ -72,9 +70,7 @@ public class MachineCompositeTest {
         mc.addObserver(os);
         mc.addComponent(m);
         m.setBroken();
-        mc.update(m, m);
         m.repair();
-        mc.update(m, m);
 
         assertEquals(false, mc.isBroken());
         assertEquals(true, os.alerted);
@@ -144,7 +140,6 @@ public class MachineCompositeTest {
         mc.addComponent(m1);
 
         m1.setBroken();
-        mc.update(m1, m1);
         
         assertEquals(true, m1.isBroken());
         assertEquals(true, mc.isBroken());
